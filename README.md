@@ -2,7 +2,7 @@
 
 **Mata Kuliah:** Desain Web  
 **Tugas:** Praktikum JavaScript HTML DOM  
-**Nama:** [Nama Anda]  
+**Nama:** Farhan Rasyid Mustaqim  
 **NIM:** 20240140102
 
 
