@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Profile Card Maker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#080c10] text-white min-h-screen flex justify-center py-12 px-5">
+    <div class="w-full max-w-5xl">
+
+        <!-- HEADER -->
+        <header class="mb-12">
+            <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 text-emerald-400 text-xs font-black tracking-[2px] mb-5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 blink" style="box-shadow:0 0 8px #10b981"></span>
+                PROFILE CARD MAKER
+            </div>
+            <h1 class="text-5xl font-black tracking-tight mb-3">Buat kartu profil digitalmu sendiri.</h1>
+            <p class="text-white/50 max-w-lg leading-relaxed text-base">Lengkapi data pada setiap tab, pilih warna, dan tampilkan kartu profil Anda secara langsung.</p>
+        </header>
+
+        <!-- MAIN GRID -->
+        <main class="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 items-start">
+
+            <!-- PREVIEW SECTION -->
+            <div class="flex flex-col items-center">
+
+                <!-- CARD -->
+                <div class="card-container w-full max-w-[460px] cursor-pointer" style="aspect-ratio:1.586/1" id="cardContainer">
+                    <div class="card relative w-full h-full" id="card">
+
+                        <!-- FRONT SIDE -->
+                        <div class="card-side absolute inset-0 rounded-2xl p-7 flex flex-col justify-between overflow-hidden border border-[#00C896]/15"
+                             style="background:linear-gradient(135deg,rgba(0,200,150,.18) 0%,rgba(0,0,0,.92) 100%)"
+                             id="cardFrontSide">
+                            <div class="flex justify-between items-start">
+                                <div id="avatarPreview"
+                                     class="w-14 h-14 rounded-xl flex items-center justify-center text-base font-bold overflow-hidden border border-[#00C896]/30"
+                                     style="background:rgba(0,200,150,.15);color:#00C896">AB</div>
+                                <div class="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold tracking-wider border"
+                                     style="background:rgba(0,200,150,.1);border-color:rgba(0,200,150,.2);color:#00C896">
+                                    <span class="w-1.5 h-1.5 rounded-full" style="background:#00C896"></span>
+                                    <span id="previewRole">Student</span>
+                                </div>
+                            </div>
+                            <div class="flex-1 flex flex-col justify-center py-2">
+                                <p class="text-xs font-black tracking-[2.5px] mb-2" style="color:rgba(0,200,150,.7)">PROFILE</p>
+                                <h2 id="previewName" class="text-2xl font-black tracking-tight text-white mb-1">Nama Anda</h2>
+                                <p id="previewProdi" class="text-sm text-white/50">Program Studi</p>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <p id="previewNim" class="text-xs font-semibold tracking-wider" style="color:rgba(0,200,150,.6)">NIM: —</p>
+                                <span class="text-[10px] font-black tracking-[2px] text-white/25">FRONT</span>
+                            </div>
+                            <div class="glow absolute -top-10 -right-10 w-32 h-32 rounded-full pointer-events-none"
+                                 style="background:#00C896;filter:blur(70px);opacity:.15"></div>
+                        </div>
+
+                        <!-- BACK SIDE -->
+                        <div class="card-side card-back-side absolute inset-0 rounded-2xl p-6 flex flex-col justify-between bg-white text-gray-900">
+                            <!-- Back header -->
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-2.5">
+                                    <div id="backLogoCircle"
+                                         class="w-9 h-9 rounded-xl flex items-center justify-center text-sm font-black text-white shrink-0"
+                                         style="background:#00C896">AB</div>
+                                    <div>
+                                        <p id="backName" class="text-sm font-bold text-gray-900">Nama Anda</p>
+                                        <p id="backRole" class="text-[11px] font-semibold" style="color:#00C896">Student</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-black tracking-[2px] text-gray-900/20">BACK</span>
+                            </div>
+                            <!-- Info + QR side by side -->
+                            <div class="flex items-center gap-4">
+                                <!-- Info rows -->
+                                <div class="flex flex-col gap-2 flex-1">
+                                    <div class="flex items-center gap-2 text-xs text-gray-500">
+                                        <i data-lucide="mail" class="w-3.5 h-3.5 shrink-0" style="color:#00C896"></i>
+                                        <p id="previewEmail" class="truncate">email@email.com</p>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-gray-500">
+                                        <i data-lucide="briefcase" class="w-3.5 h-3.5 shrink-0" style="color:#00C896"></i>
+                                        <p id="previewStatus">Status Pekerjaan</p>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-gray-500">
+                                        <i data-lucide="calendar" class="w-3.5 h-3.5 shrink-0" style="color:#00C896"></i>
+                                        <p id="previewDate">Tanggal Lahir</p>
+                                    </div>
+                                </div>
+                                <!-- QR centered -->
+                                <div class="flex flex-col items-center gap-1 shrink-0">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=mailto:"
+                                         alt="QR" id="qrImage" class="w-16 h-16 rounded-lg">
+                                    <p class="text-[9px] text-gray-400 tracking-wide">SCAN EMAIL</p>
+                                </div>
+                            </div>
+                            <!-- Hobi footer -->
+                            <div class="border-t border-black/5 pt-2">
+                                <p class="text-[9px] font-black tracking-[1.5px] text-black/30 mb-0.5">HOBI</p>
+                                <p id="previewSkills" class="text-xs text-gray-400 italic leading-snug">Tambahkan hobi...</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <p class="mt-4 text-sm text-white/40">Tip: klik kartu untuk membalik sisi (Flip)</p>
+
+                <!-- STATS BAR -->
+                <div class="flex w-full max-w-[460px] mt-6 bg-white/[.04] border border-white/10 rounded-xl overflow-hidden">
+                    <div class="flex-1 text-center p-4 border-r border-white/10">
+                        <p id="statName" class="text-xl font-black leading-none mb-1" style="color:#00C896">0</p>
+                        <p class="text-xs text-white/40 font-semibold tracking-wide">Karakter Nama</p>
+                    </div>
+                    <div class="flex-1 text-center p-4 border-r border-white/10">
+                        <p id="statFields" class="text-xl font-black leading-none mb-1" style="color:#00C896">0/5</p>
+                        <p class="text-xs text-white/40 font-semibold tracking-wide">Field Terisi</p>
+                    </div>
+                    <div class="flex-1 text-center p-4">
+                        <p id="statCompletion" class="text-xl font-black leading-none mb-1" style="color:#00C896">0%</p>
+                        <p class="text-xs text-white/40 font-semibold tracking-wide">Kelengkapan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM SECTION -->
+            <div class="bg-white/[.04] border border-white/10 rounded-2xl overflow-hidden">
+                <nav class="flex bg-white/[.02] border-b border-white/10">
+                    <button class="tab-btn flex-1 bg-transparent border-0 py-4 text-xs font-black tracking-wider cursor-pointer transition-colors active" data-tab="utama">UTAMA</button>
+                    <button class="tab-btn flex-1 bg-transparent border-0 py-4 text-xs font-black tracking-wider cursor-pointer transition-colors" data-tab="biodata">BIODATA</button>
+                    <button class="tab-btn flex-1 bg-transparent border-0 py-4 text-xs font-black tracking-wider cursor-pointer transition-colors" data-tab="tentang">TENTANG</button>
+                    <button class="tab-btn flex-1 bg-transparent border-0 py-4 text-xs font-black tracking-wider cursor-pointer transition-colors" data-tab="hobi">HOBI</button>
+                </nav>
+
+                <!-- TAB: UTAMA -->
+                <div class="tab-content tab-animate p-7" id="utama">
+                    <h3 class="text-xl font-bold mb-1.5">Halaman Utama</h3>
+                    <p class="text-sm text-white/50 mb-5 leading-relaxed">Identitas dasar dan tema kartu.</p>
+                    <div class="flex flex-col gap-3">
+                        <div class="relative">
+                            <i data-lucide="user" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none"></i>
+                            <input type="text" id="inputName" placeholder="Nama Lengkap"
+                                   class="w-full bg-white/[.06] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white text-base outline-none focus:border-emerald-500/40 focus:bg-emerald-500/5 transition placeholder:text-white/30">
+                        </div>
+                        <div class="relative">
+                            <i data-lucide="hash" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none"></i>
+                            <input type="text" id="inputNim" placeholder="NIM / Nomor Identitas"
+                                   class="w-full bg-white/[.06] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white text-base outline-none focus:border-emerald-500/40 focus:bg-emerald-500/5 transition placeholder:text-white/30">
+                        </div>
+                        <p class="text-xs font-black text-white/50 tracking-[1.5px] mt-2">PERAN / ROLE</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button class="role-btn bg-transparent border border-white/10 rounded-xl py-3 text-sm font-semibold cursor-pointer transition active" data-role="Student">Student</button>
+                            <button class="role-btn bg-transparent border border-white/10 rounded-xl py-3 text-sm font-semibold cursor-pointer transition" data-role="Freelancer">Freelancer</button>
+                            <button class="role-btn bg-transparent border border-white/10 rounded-xl py-3 text-sm font-semibold cursor-pointer transition" data-role="Developer">Developer</button>
+                            <button class="role-btn bg-transparent border border-white/10 rounded-xl py-3 text-sm font-semibold cursor-pointer transition" data-role="Designer">Designer</button>
+                        </div>
+                        <p class="text-xs font-black text-white/50 tracking-[1.5px] mt-2">THEME COLOR</p>
+                        <div class="flex gap-3 flex-wrap">
+                            <div class="color-dot w-9 h-9 rounded-full cursor-pointer border-2 border-transparent transition active" data-color="#00C896" style="background:#00C896"></div>
+                            <div class="color-dot w-9 h-9 rounded-full cursor-pointer border-2 border-transparent transition" data-color="#6C63FF" style="background:#6C63FF"></div>
+                            <div class="color-dot w-9 h-9 rounded-full cursor-pointer border-2 border-transparent transition" data-color="#FF6B6B" style="background:#FF6B6B"></div>
+                            <div class="color-dot w-9 h-9 rounded-full cursor-pointer border-2 border-transparent transition" data-color="#FFB347" style="background:#FFB347"></div>
+                            <div class="color-dot w-9 h-9 rounded-full cursor-pointer border-2 border-transparent transition" data-color="#00BFFF" style="background:#00BFFF"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: BIODATA -->
+                <div class="tab-content p-7 hidden" id="biodata">
+                    <h3 class="text-xl font-bold mb-1.5">Halaman Biodata</h3>
+                    <p class="text-sm text-white/50 mb-5 leading-relaxed">Detail kontak dan informasi status.</p>
+                    <div class="flex flex-col gap-3">
+                        <div class="relative">
+                            <i data-lucide="mail" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none"></i>
+                            <input type="email" id="inputEmail" placeholder="Alamat Email"
+                                   class="w-full bg-white/[.06] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white text-base outline-none focus:border-emerald-500/40 focus:bg-emerald-500/5 transition placeholder:text-white/30">
+                        </div>
+                        <div class="relative">
+                            <i data-lucide="book-open" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none"></i>
+                            <input type="text" id="inputProdi" placeholder="Program Studi / Jurusan"
+                                   class="w-full bg-white/[.06] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white text-base outline-none focus:border-emerald-500/40 focus:bg-emerald-500/5 transition placeholder:text-white/30">
+                        </div>
+                        <p class="text-xs font-black text-white/50 tracking-[1.5px] mt-2">STATUS PEKERJAAN</p>
+                        <select id="inputStatus"
+                                class="w-full bg-white/[.06] border border-white/10 rounded-xl px-4 py-3 text-white text-base outline-none focus:border-emerald-500/40 transition appearance-none">
+                            <option value="" disabled selected class="bg-[#1a1d24]">Pilih Status</option>
+                            <option value="Mahasiswa" class="bg-[#1a1d24]">Mahasiswa</option>
+                            <option value="Freelancer" class="bg-[#1a1d24]">Freelancer</option>
+                            <option value="Karyawan" class="bg-[#1a1d24]">Karyawan</option>
+                            <option value="Entrepreneur" class="bg-[#1a1d24]">Entrepreneur</option>
+                        </select>
+                        <p class="text-xs font-black text-white/50 tracking-[1.5px] mt-2">TANGGAL LAHIR</p>
+                        <input type="date" id="inputDate"
+                               class="w-full bg-white/[.06] border border-white/10 rounded-xl px-4 py-3 text-white text-base outline-none focus:border-emerald-500/40 focus:bg-emerald-500/5 transition">
+                    </div>
+                </div>
+
+                <!-- TAB: TENTANG -->
+                <div class="tab-content p-7 hidden" id="tentang">
+                    <h3 class="text-xl font-bold mb-1.5">Tentang Anda</h3>
+                    <p class="text-sm text-white/50 mb-5 leading-relaxed">Bio singkat diri anda.</p>
+                    <textarea id="inputBio" placeholder="Tulis bio singkat di sini..."
+                              class="w-full bg-white/[.06] border border-white/10 rounded-xl px-4 py-3 text-white text-base outline-none focus:border-emerald-500/40 focus:bg-emerald-500/5 transition placeholder:text-white/30 min-h-[140px] resize-none leading-relaxed"></textarea>
+                </div>
+
+                <!-- TAB: HOBI -->
+                <div class="tab-content p-7 hidden" id="hobi">
+                    <h3 class="text-xl font-bold mb-1.5">Halaman Hobi</h3>
+                    <p class="text-sm text-white/50 mb-5 leading-relaxed">Apa yang Anda sukai.</p>
+                    <div class="flex flex-col gap-3">
+                        <div class="relative">
+                            <i data-lucide="zap" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none"></i>
+                            <input type="text" id="inputSkills" placeholder="Contoh: Coding, Fotografi"
+                                   class="w-full bg-white/[.06] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white text-base outline-none focus:border-emerald-500/40 focus:bg-emerald-500/5 transition placeholder:text-white/30">
+                        </div>
+                        <p class="text-xs font-black text-white/50 tracking-[1.5px] mt-2">PHOTO PROFIL</p>
+                        <label class="border-2 border-dashed border-white/10 rounded-xl p-8 flex flex-col items-center gap-2.5 cursor-pointer text-white/40 hover:bg-emerald-500/5 hover:border-emerald-500/30 hover:text-emerald-400 transition">
+                            <i data-lucide="camera" class="w-6 h-6"></i>
+                            <span class="text-sm font-semibold">Upload Foto</span>
+                            <input type="file" id="inputAvatar" accept="image/*" class="hidden">
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
